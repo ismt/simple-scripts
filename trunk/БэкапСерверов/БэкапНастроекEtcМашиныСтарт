@@ -1,0 +1,32 @@
+#!/bin/bash
+
+backup_server_ip=192.168.120.148
+backup_remote_scripts=/root/backup_scripts_dfksdfxvljxcleiswfj # Директория на удаленном компе
+
+function Command {
+  command=$3
+  #echo $command
+  sshpass -p $2 ssh -q -t -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" root@$1 "$command"
+}
+
+
+function ExecScript {
+  #clear
+  echo Бэкапим // $1 $3
+  Command $1 $2 "hostname"
+  Command $1 $2 "rm -r $backup_remote_scripts > /dev/null 2>&1"
+  Command $1 $2 "mkdir -p "$backup_remote_scripts""
+
+  sshpass -p $2 scp -p -q -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" ./БэкапНастроекEtc ./id_dsa root@$1:$backup_remote_scripts
+
+  Command $1 $2 "$backup_remote_scripts/БэкапНастроекEtc $backup_remote_scripts $backup_server_ip $3 $4"
+
+  Command $1 $2 "rm -r $backup_remote_scripts"
+  sync
+  echo
+}
+
+# Для бэкапа создать useradd -m backup_user в .bashrc добавить umask 077 в /etc/ssh/sshd_config ... internal-sftp -u 0077
+# Передать ssh-copy-id -i ~/.ssh/id_dsa.pub backup_user@127.0.0.1
+clear
+ExecScript puppet         Пароль              /etc         /home

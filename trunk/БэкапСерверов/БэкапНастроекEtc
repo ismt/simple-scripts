@@ -1,0 +1,24 @@
+#!/bin/bash
+
+backup_remote_scripts=$1
+backup_server_ip=$2
+backup_remote_dir=$3
+backup_remote_tmp=$4
+
+hostname=$(echo -n $(hostname | tr -d " "))
+
+arc_file_name="$hostname"___$(echo $backup_remote_dir | tr '/' '_').tar.gz
+arc_name=$backup_remote_tmp/$arc_file_name
+
+rm $arc_name > /dev/null 2>&1
+
+tar -czf $arc_name $backup_remote_dir
+
+sftp_file=$backup_remote_scripts/sftp_commands
+echo progress >                    $sftp_file
+echo "put $arc_name" >>            $sftp_file
+echo "chmod 600 $arc_file_name" >> $sftp_file
+echo exit >>                       $sftp_file
+
+sftp -C -b $sftp_file -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "IdentityFile=$backup_remote_scripts/id_dsa" backup_user@$backup_server_ip  
+rm $arc_name
