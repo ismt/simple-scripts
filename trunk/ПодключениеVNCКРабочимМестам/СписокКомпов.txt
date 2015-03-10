@@ -1,0 +1,2 @@
+"192.168.120.163"	"Имя компа"		"-NoJPEG -compresslevel 3 -Maximize" 					"Пароль"
+
