@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-arc="pv -cN mysqldump | xz -1 -c  --threads=0 | pv -cN xz > t.sql.xz"
+arc="pv -cN mysqldump | xz -1 -c  --threads=0 | pv -cN xz > $(uuidgen  -t).sql.xz"
 
 mysqldump \
     --user=root \
