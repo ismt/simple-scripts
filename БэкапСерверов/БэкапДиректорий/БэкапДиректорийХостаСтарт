@@ -1,0 +1,70 @@
+#!/bin/bash
+
+backup_server_ip=$(awk '{if (NR==1) print $1}' ../backup_server_ip.txt)
+
+ssh_options="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+
+trap 'echo -e "\e[1;31mПрервано, проверьте, возможно на схосте для бэкапа продолжает работать процесс архивации \e[0m" ; exit' 2 20
+
+function Command {
+  command=$3
+  sshpass -p $2 ssh -n -t -t $ssh_options root@$1 "$command"
+}
+
+function BackupHost {
+  if [ "$dir_for_temporary_files" == "" ] ;
+  then
+    echo Ахтунг, выхожу
+    exit
+  fi
+  # Директория с бэкап скриптом на удаленном компе
+  backup_remote_scripts=$dir_for_temporary_files/backup_scripts_IEy9UiIfggaC-SdslHrGRcvUvQJFLGx9
+
+  ../echo_color.sh green "Соединяемся"
+  ../echo_color.sh "" "$addr"
+  Command $1 $2 "rm -r $backup_remote_scripts > /dev/null 2>&1 ; mkdir -p "$backup_remote_scripts" && chown -R root:root $backup_remote_scripts ; chmod -R g-rwx,o-rwx $backup_remote_scripts"
+
+  if [ "$?" != 0 ] ;
+  then
+    ../echo_color.sh light_red "Ошибка, пропуск хоста" ; echo
+    return 255
+  fi
+
+  ../echo_color.sh yellow "Перенос скриптов на хост"
+  sshpass -p $2 scp -p $ssh_options ./БэкапДиректорийХоста ../id_dsa ../compress.sh ../echo_color.sh ../send_to_sftp.sh root@$1:$backup_remote_scripts
+
+  Command $1 $2 "$backup_remote_scripts/БэкапДиректорийХоста $backup_server_ip $3 $backup_remote_scripts $5 $1 $compression_level"
+
+  ../echo_color.sh yellow "Удаляем врменную папку с хоста"
+  Command $1 $2 "rm -r $backup_remote_scripts"
+
+  ../echo_color.sh yellow "sync для верности"
+  sync
+
+  ../echo_color.sh green "Готово"
+  echo
+}
+
+# Для бэкапа создать useradd -m backup_user в .bashrc добавить umask 077 в /etc/ssh/sshd_config ... internal-sftp -u 0077
+# Передать ssh-copy-id -i ~/.ssh/id_dsa.pub backup_user@127.0.0.1
+# Установить утилиты pv p7zip awk bzip2 xz
+clear
+file_conf=./hosts_list.txt
+i=1
+while read line
+do
+  if [ "${line:0:1}" != '#' -a "${line:0:1}" != ' ' -a "${line:0:1}" != '' ];
+  then
+                       addr=$(awk '{if (NR=='$i') print $1}' $file_conf)
+                   password=$(awk '{if (NR=='$i') print $2}' $file_conf)
+             dir_for_backup=$(awk '{if (NR=='$i') print $3}' $file_conf)
+    dir_for_temporary_files=$(awk '{if (NR=='$i') print $4}' $file_conf)
+                   arc_type=$(awk '{if (NR=='$i') print $5}' $file_conf)
+          compression_level=$(awk '{if (NR=='$i') print $6}' $file_conf)
+    BackupHost $addr "$password" $dir_for_backup $dir_for_temporary_files $arc_type
+  fi
+  let "i=$i+1"
+done < $file_conf
+# Такой вариант позволяет нормально отображать инфу с удаленной консоли
+
+

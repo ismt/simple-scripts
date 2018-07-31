@@ -1,0 +1,10 @@
+asterisk-11-current.tar.gz
+asterisk-chan-dongle-asterisk11.zip
+Chan_SCCP-4.2.0_RC2_r5978.tar.gz
+dahdi-linux-complete-current.tar.gz
+freepbx-2.11.0.42.tgz
+jansson-2.7.tar.gz
+lame-3.99.5.tar.gz
+libpri-1.4-current.tar.gz
+pjproject-2.3.tar.bz2
+srtp-1.4.2.tgz

@@ -1,0 +1,26 @@
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13-current.tar.gz
+wget http://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-current.tar.gz
+wget http://mirror.freepbx.org/freepbx-12.0.3.tgz
+wget http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+wget https://github.com/oleg-krv/asterisk-chan-dongle/archive/asterisk13.zip --output-document=asterisk-chan-dongle-asterisk13.zip
+wget http://downloads.asterisk.org/pub/telephony/libpri/libpri-1.4-current.tar.gz
+wget http://www.pjsip.org/release/2.4/pjproject-2.4.tar.bz2
+wget http://sourceforge.net/projects/chan-sccp-b/files/V4/Chan_SCCP-V4.2_STABLE_r6146.tar.gz
+
+asterisk-13-current.tar.gz
+dahdi-linux-complete-current.tar.gz
+freepbx-12.0.3.tgz
+
+http://lame.sourceforge.net/
+lame-3.99.5.tar.gz
+
+http://www.pjsip.org/download.htm
+pjproject.tar.gz
+
+asterisk-chan-dongle-asterisk13.zip
+
+http://chan-sccp-b.sourceforge.net/download.shtml
+chan-sccp-b_V4.2.tar.gz
+
+libpri-1.4-current.tar.gz
+

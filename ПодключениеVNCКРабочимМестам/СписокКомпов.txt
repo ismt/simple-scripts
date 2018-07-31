@@ -1,0 +1,2 @@
+# Адрес, порт           Описание хоста          Параметры подключения vncviever                                    					Пароль
+"192.168.120.163:5900"	"aquвапввавап"		"-SendClipboard -AcceptClipboard -NoJPEG -compresslevel 1 -Maximize" 					"ig"

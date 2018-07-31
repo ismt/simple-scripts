@@ -1,0 +1,144 @@
+
+ps -A -f | grep -i
+
+
+Поиск файла со строкой
+grep -ri --include=*.txt 'искомая строка' /home
+
+
+Отрицание
+grep -v '^[#;]' /etc/samba/smb.conf
+
+
+http://ru.najomi.org/_nix/sed
+Замена строки в файле
+sed -i "s/строка/новая строка/g" file
+
+------------------------------------------------------------------------------------------------------------------------------
+Сканирование портов
+http://www.itword.net/page/nmap
+
+Порты и ось
+nmap -p 1-65535 -sT -O -v 192.168.130.80
+
+Типы сервисов на портах
+nmap -p 1-65535 -sV -v 192.168.130.80
+---------------------------------------------------------------------------------------------------------------------------
+
+Проброс портов
+http://habrahabr.ru/post/122445/
+ssh -N -L 53306:localhost:3306 root@rei.vd
+
+ssh-keygen -b 1024 -t dsa
+ssh-copy-id -i ~/.ssh/id_dsa.pub root@192.168.120.29
+
+
+
+Запретить фрагментацию пакета для поиска MTU
+ping 192.168.130.1 -s 1272 -M do
+
+
+Перегон dd через сеть
+nc -l 20000 | bzip2 -d | dd bs=16M of=/dev/sdb
+dd bs=16M if=/dev/sda | bzip2 -c | nc serverB.example.net 20000
+
+Слушает
+nc -l 20000 | dd bs=4096 of=opensuse_13_2_client.img
+Передает
+dd bs=4096 count=1048576 if=/dev/sda | nc 192.168.120.144 20000
+
+
+
+
+
+Добавление пользователя proftpd
+/usr/local/etc/proftpd/ftpasswd --passwd --file=/usr/local/etc/proftpd/passwd --name=new_sites --shell=/usr/sbin/nologin --home=/home/aquarius/domains/second_part --uid=2007 --gid=80
+
+
+http://www.opennet.ru/man.shtml?topic=rsyncd.conf&category=5&russian=0
+rsync --human-readable --progress --preallocate --compress --recursive --times --perms --links --delete-before backup_2@danzo.vd::_backup_servers /home/stas/bin/disk_e
+
+
+Поиск дубликатов
+fdupes --recurse --size --summarize /home/stas/bin/disk_e
+
+
+find /etc/puppet/files/opensuse_client_profile/etc/skel/ -type f -exec chmod 644 {} +
+find /etc/puppet/files/opensuse_client_profile/etc/skel/ -type d -exec chmod 755 {} +
+
+
+Поиск измененных в минутах
+find / \( -path /sys -o    -path /tmp -o    -path /run -o     -path /proc \) -prune -o -type f -mmin -1
+
+Адрес хоста на самбе
+nmblookup -R aquarius
+
+Подключение по имени Samba netbios
+export SSHPASS=
+addr=$(nmblookup -R aquarius_3 | cut -d' ' -f1) && sshpass -e ssh -q -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" root@$addr
+
+
+Пример архивации
+tar --sparse -J --xz -cf backup_config_rei_vd.tar.xz /etc /var     --exclude=/var/tmp
+tar --sparse -czf        backup_config_rei_vd.tar.gz /etc /var/www --exclude=/var/tmp
+tar --sparse -c /home/client /usr /etc /var /root /boot /srv --exclude=/var/tmp --exclule=/var/run | 7z a -m0=LZMA2 -mx=9 -si /home/stas/backup.tar.7z
+
+
+mysqldump -uroot -h127.0.0.1 -p --routines --all-databases > gsm_dump_mysql.sql
+
+
+----------------------------------------------------------------------------------------------------------
+Дефрагментация
+
+Проверка
+xfs_db -r /dev/sda3
+xfs_db> frag
+quit
+
+Дефрагментация
+xfs_fsr -v /dev/sda3
+
+Дамп для бэкапа xfsdump -L session_1 -M tape_0 -J -f t.ttt /dev/sda3
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+ext4
+
+Для home
+commit=30,journal_checksum,journal_async_commit,nosuid,noacl
+
+для остальных
+commit=30,journal_checksum,journal_async_commit
+----------------------------------------------------------------------------------------------------------------------------------
+
+Наблюдение, повторение команды
+watch -n 1 'ps -A -f | grep -i rpm'
+
+service smb restart && service nmb restart
+
+badblocks -v -s /dev/sda | tee /root/badblocks.txt
+
+
+
+
+http://laptop.ucoz.ru/news/shpargalka_po_upravleniju_servisami_centos_7_s_systemd/2014-10-22-6063
+systemctl start name.service – запуск сервиса.
+systemctl stop name.service — остановка сервиса
+systemctl restart name.service — перезапуск сервиса
+systemctl try-restart name.service — перезапуск сервиса только, если он запущен
+systemctl reload name.service — перезагрузка конфигурации сервиса
+systemctl status name.service — проверка, запущен ли сервис с детальным выводом состояния сервиса
+systemctl is-active name.service — проверка, запущен ли сервис с простым ответом: active или inactive
+systemctl list-units --type service --all – отображение статуса всех сервисов
+systemctl enable name.service – активирует сервис (позволяет стартовать во время запуска системы)
+systemctl disable name.service – деактивирует сервис
+systemctl reenable name.service – деактивирует сервис и сразу активирует его
+systemctl is–enabled name.service – проверяет, активирован ли сервис
+systemctl list-unit-files --type service – отображает все сервисы и проверяет, какие из них активированы
+systemctl mask name.service – заменяет файл сервиса симлинком на /dev/null, делая юнит недоступным для systemd
+systemctl unmask name.service – возвращает файл сервиса, делая юнит доступным для systemd
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+iftop -nN -f "dst port 80 or dst port 443"

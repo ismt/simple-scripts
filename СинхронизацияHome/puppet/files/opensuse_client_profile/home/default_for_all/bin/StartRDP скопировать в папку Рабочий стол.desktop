@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[ru]=
+Comment=
+Exec=/home/$USER/bin/user_rdp_start.sh
+GenericName[ru]=
+GenericName=
+Icon=/home/$USER/bin/logo_1c.png
+MimeType=
+Name[ru]=
+Name=
+Path=/home/$USER/bin
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=

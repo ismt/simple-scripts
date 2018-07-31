@@ -1,0 +1,2 @@
+#Имя хоста            Пароль ssh                 Имя базы                Пароль root mysql                               Временная папка
+192.168.120.26        fhffh                      test                    dgfdhfd                                         /tmp

@@ -1,0 +1,36 @@
+object Form1: TForm1
+  Left = 343
+  Height = 441
+  Top = 165
+  Width = 934
+  Caption = 'Form1'
+  ClientHeight = 441
+  ClientWidth = 934
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object PictureToDlinnopost: TButton
+    Left = 16
+    Height = 49
+    Top = 24
+    Width = 256
+    Caption = 'Картинки в длиннопост'
+    OnClick = PictureToDlinnopostClick
+    TabOrder = 0
+  end
+  object AsyncProcess1: TAsyncProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 440
+    top = 32
+  end
+end

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+backup_server_ip=$1
+backup_remote_dir_for_backup=$2
+backup_remote_tmp=$3
+arc_type=$4
+backup_host_ip=$5
+compression_level=$6
+
+cd $backup_remote_tmp
+hostname=$(echo -n $(hostname | tr -d " "))
+
+file_name=DIR-BACKUP---$(date +%u)-$(date +%A)--$(echo $backup_remote_dir_for_backup | tr '/' '-')
+arc_file_name=$file_name.$arc_type
+
+./echo_color.sh "" "Имя хоста --- $hostname"
+
+./compress.sh $backup_remote_dir_for_backup $compression_level $arc_type $file_name
+
+if [ "$?" != 0 ];
+then
+  ./echo_color.sh light_red 'Архив не создан, выход'
+  exit 1
+fi
+
+./send_to_sftp.sh $backup_server_ip $backup_host_ip $arc_file_name

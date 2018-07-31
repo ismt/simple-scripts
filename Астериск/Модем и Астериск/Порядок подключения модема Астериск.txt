@@ -1,0 +1,65 @@
+Перевести модем из CD диска в режим модема по умолчанию
+
+1 Подключить модем к хабу
+
+2 Найти новые устройства в /dev/ttyUSB
+
+3 Выяснить их адрес в шине USB
+
+udevadm info -q all -n /dev/ttyUSB0 | grep DEVPATH
+
+Вас интересует комбинация 1-3.4:1.0
+E: DEVPATH=/devices/pci0000:00/0000:00:1d.7/usb1/1-3/1-3.4/1-3.4:1.0/ttyUSB0/tty/ttyUSB0
+
+И так со всеми 3 устройствами модема
+
+4 Прописать это в /etc/udev/rules.d/50-udev.rules
+
+# MTS 2
+KERNEL=="ttyUSB[0-9]*", ID=="1-3.4:1.0", SYSFS{bInterfaceNumber}=="00", SYMLINK+="3g/mts2-modem", OWNER="asterisk", GROUP="uucp", MODE="0666"
+KERNEL=="ttyUSB[0-9]*", ID=="1-3.4:1.1", SYSFS{bInterfaceNumber}=="01", SYMLINK+="3g/mts2-audio", OWNER="asterisk", GROUP="uucp", MODE="0666"
+KERNEL=="ttyUSB[0-9]*", ID=="1-3.4:1.2", SYSFS{bInterfaceNumber}=="02", SYMLINK+="3g/mts2-vmodem", OWNER="asterisk", GROUP="uucp", MODE="0666"
+
+5 Перезагрузить правила udevadm control --reload-rules
+
+6 Вытащить, вставить модем
+
+7 Добавить в /etc/asterisk/dongle.conf
+[dongle-mts2]
+imei=351911042359698
+
+8 Настроить подробности транка в веб интерфейсе http://rei.vd/admin/config.php
+
+9
+http://asterisk-pbx.ru/wiki/asterisk/asterisk_cli
+
+Вход в консоль Астериск 				/usr/sbin/asterisk -vvr
+Проверить баланс карточки                                       dongle ussd dongle-life *121#
+Перезагрузить Астериск                                  /usr/sbin/asterisk -rx 'core restart now'
+Перезагрузить Астериск                                  /usr/sbin/asterisk -rx 'core restart gracefully'
+Перезагрузить Астериск, когда разговоров не будет       /usr/sbin/asterisk -rx 'core restart when convenient'
+Перезагрузить SIP                                       /usr/sbin/asterisk -rx 'sip reload'
+Перезагрузить конфиг модемов                            /usr/sbin/asterisk -rx 'dongle reload now'
+
+Версия Астериск                                         /usr/sbin/asterisk -rx 'core show version'
+
+Показать SIP соединения                                 /usr/sbin/asterisk -rx 'sip show peers'
+Показать Cisco соединения                               /usr/sbin/asterisk -rx 'sccp show devices'
+Показать статус usb модемов                             /usr/sbin/asterisk -rx 'dongle show devices'
+
+Проверить pid ps -A -f | grep /usr/sbin/asterisk
+
+
+Мониторить watch -n 1 '/usr/sbin/asterisk -rx "dongle show devices"'
+
+ls -l /dev/ttyUSB* ; ls -l /dev/3g/
+
+http://www.asterisk-pbx.ru/wiki/asterisk/asterisk_cli
+
+
+Для настройки gsm.vd
+
+В mysql базе gsm в таблице operators внести данные модема
+Удалить из базы gammu-smsd из phones лишние данные
+
+

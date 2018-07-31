@@ -1,0 +1,55 @@
+#!/bin/bash
+
+backup_server_ip=$(awk '{if (NR==1) print $1}' ../backup_server_ip.txt)
+ssh_options="-q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+
+trap 'echo -e "\e[1;31mПрервано, проверьте, возможно на схосте для бэкапа продолжает работать процесс архивации \e[0m" ; exit' 2 20
+
+function Command {
+  command=$3
+  sshpass -p $2 ssh -n -t -t $ssh_options root@$1 "$command"
+}
+
+function BackupHost {
+  if [ "$backup_remote_tmp" == "" ] ;
+  then
+    echo Ахтунг, выхожу
+    exit
+  fi
+  backup_remote_scripts=$backup_remote_tmp/backup_scripts_OYh14uzn5Jas0V2wC6nhX4_R55B8jzqD # Директория с бэкап скриптом на удаленном компе
+
+  Command $backup_host_address $backup_host_ssh_password "rm -r $backup_remote_scripts > /dev/null 2>&1 ; mkdir -p "$backup_remote_scripts" && chown -R root:root $backup_remote_scripts ; chmod -R g-rwx,o-rwx $backup_remote_scripts"
+
+  ../echo_color.sh green "Перенос скриптов на хост"
+  sshpass -p $backup_host_ssh_password scp -p $ssh_options ./БэкапMySQL ../id_dsa ../compress.sh ../echo_color.sh ../send_to_sftp.sh root@$backup_host_address:$backup_remote_scripts
+
+  Command $backup_host_address $backup_host_ssh_password "$backup_remote_scripts/БэкапMySQL \"$backup_server_ip\"  \"$backup_host_address\" \"$backup_mysql_base_name\" \"$backup_mysql_root_password\" \"$backup_remote_scripts\" "
+
+  ../echo_color.sh green "Удаляем врменную папку с хоста"
+  Command $backup_host_address $backup_host_ssh_password "rm -r $backup_remote_scripts"
+  sync
+  ../echo_color.sh green "Готово"
+  echo
+}
+
+# Для бэкапа создать useradd -m backup_user в .bashrc добавить umask 077 в /etc/ssh/sshd_config ... internal-sftp -u 0077
+# Передать ssh-copy-id -i ~/.ssh/id_dsa.pub backup_user@127.0.0.1
+# Установить утилиты pv p7zip
+clear
+# awk для того, чтобы пароли не мелькали в командной строке
+file_conf=./hosts_mysql_list.txt
+i=1
+while read line
+do
+  if [ "${line:0:1}" != '#' -a "${line:0:1}" != ' ' -a "${line:0:1}" != '' ];
+  then
+           backup_host_address=$(awk '{if (NR=='$i') print $1}' $file_conf)
+      backup_host_ssh_password=$(awk '{if (NR=='$i') print $2}' $file_conf)
+        backup_mysql_base_name=$(awk '{if (NR=='$i') print $3}' $file_conf)
+    backup_mysql_root_password=$(awk '{if (NR=='$i') print $4}' $file_conf)
+             backup_remote_tmp=$(awk '{if (NR=='$i') print $5}' $file_conf)
+    BackupHost $backup_server_ip "$backup_host_address" "$backup_host_ssh_password" "$backup_mysql_base_name" "$backup_mysql_root_password" "$backup_remote_tmp"
+  fi
+  let "i=$i+1"
+done < $file_conf
+# Такой вариант позволяет нормально отображать инфу с удаленной консоли

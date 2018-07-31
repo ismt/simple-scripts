@@ -1,0 +1,28 @@
+#!/bin/bash
+
+trap 'echo -e "\e[1;31mПрервано, выход \e[0m" ; exit' 2 20
+
+backup_server_ip=$1
+backup_host_address=$2
+backup_mysql_base_name=$3
+backup_mysql_root_password=$4
+backup_remote_tmp=$5
+
+cd $backup_remote_tmp
+hostname=$(echo -n $(hostname | tr -d " "))
+backup_file_name="MySQL-DUMP---$(date +%u)-$(date +%A)---$backup_mysql_base_name"
+
+./echo_color.sh yellow "Имя хоста --- $hostname, Адрес --- $backup_host_address, Имя базы $backup_mysql_base_name"
+
+./echo_color.sh yellow "Делаем дамп MySQL"
+mysqldump  -h127.0.0.1 -uroot -p"$backup_mysql_root_password" --routines --events --quick --extended-insert --flush-logs --databases $backup_mysql_base_name > ./$backup_file_name.sql
+
+./compress.sh $backup_file_name.sql 9 tar.gz $backup_file_name
+
+if [ "$?" != 0 ];
+then
+  ./echo_color.sh light_red 'Архив не создан, выход'
+  exit 1
+fi
+
+./send_to_sftp.sh $backup_server_ip $backup_host_address ./$backup_file_name.tar.gz

@@ -1,0 +1,8 @@
+http://habrahabr.ru/post/160299/
+https://github.com/jstasiak/asterisk-chan-dongle/tree/asterisk11
+
+
+http://olegkrv.org.ua/blog/2015/03/23/chan_dongle-%D0%B4%D0%BB%D1%8F-asterisk-13/
+https://github.com/oleg-krv/asterisk-chan-dongle/tree/asterisk13
+
+https://github.com/bg111/asterisk-chan-dongle

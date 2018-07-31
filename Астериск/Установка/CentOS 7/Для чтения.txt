@@ -1,0 +1,3 @@
+Справка сайты
+http://asterisk-pbx.ru/wiki/asterisk_install/asterisk-12_freepbx-12_centos-7
+

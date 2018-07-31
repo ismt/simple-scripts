@@ -1,0 +1,8 @@
+http://strawberryperl.com/releases.html
+
+
+http://ffmpeg.zeranoe.com/builds/
+http://www.imagemagick.org/script/binary-releases.php
+http://optipng.sourceforge.net/
+http://sourceforge.net/projects/apng2gif/files/?source=navbar
+http://opensourcepack.blogspot.com/2013/02/zenity-360-portable.html
