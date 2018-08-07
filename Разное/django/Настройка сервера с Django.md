@@ -28,7 +28,7 @@ systemctl start mariadb
 systemctl enable mariadb
 
 
-pip3.6 install uwsgi virtualenv
+pip3.6 install uwsgi virtualenv  pipenv
 
 
 # https://bozza.ru/art-259.html
