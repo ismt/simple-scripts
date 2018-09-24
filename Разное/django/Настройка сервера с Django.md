@@ -18,17 +18,12 @@ yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tool
 
 yum update  -y
 
-Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем grub2-mkconfig -o /boot/grub2/grub.cfg
 
-
-Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
-
-
-#Если проблема с локалями
+# Если проблема с локалями
 #localedef -v -c -i ru_RU -f UTF-8 ru_RU.UTF-8
 
 
-Подложить эталонный конфиг mariadb
+# Подложить эталонный конфиг mariadb
 systemctl start mariadb
 systemctl enable mariadb
 
@@ -56,8 +51,12 @@ systemctl restart nginx
 systemctl enable nginx
 ```
 
+## Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
 
-Выполнить скрипт mysql_secure_installation
+## Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+## Выполнить скрипт mysql_secure_installation
 
 
 ## Создать юзера под которым все будет работать
@@ -66,9 +65,7 @@ useradd server_user
 passwd server_user
 ```
 
-
 ## Выключить selinux /etc/selinux/config
-
 
 ## Автостарт проекта
 ```bash
@@ -102,3 +99,4 @@ virtualenv -p /usr/bin/python3.6 virtualenv
 git clone -b develop https://github.com/stemsc/.git project
 
 ```
+  
