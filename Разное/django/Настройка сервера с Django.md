@@ -16,13 +16,19 @@ yum -y erase mariadb*
 
 yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL  smartmontools
 
-yum update
+yum update  -y
 
-#Если проблема с локалями 
+Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем grub2-mkconfig -o /boot/grub2/grub.cfg
+
+
+Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
+
+
+#Если проблема с локалями
 #localedef -v -c -i ru_RU -f UTF-8 ru_RU.UTF-8
 
-Подложить эталонный конфиг mariadb
 
+Подложить эталонный конфиг mariadb
 systemctl start mariadb
 systemctl enable mariadb
 
@@ -67,9 +73,14 @@ passwd server_user
 ## Автостарт проекта
 ```bash
 chmod 760 /etc/rc.d/rc.local
+```
 
-#  Добавить в файл команду старта
+## Добавить в /etc/rc.d/rc.local
+```bash
 /usr/bin/sudo -H -u dev_stem /srv/www/dev/api/uwsgi_socket_start_simple.sh -d
+
+# В grub2 опция почемуто не работает, тогда так
+echo kyber > /sys/block/sda/queue/scheduler
 ```
 
 
