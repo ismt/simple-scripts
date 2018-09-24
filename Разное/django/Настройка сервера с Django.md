@@ -53,26 +53,26 @@ systemctl enable nginx
 
 ### Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
 
-## Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем grub2-mkconfig -o /boot/grub2/grub.cfg
+### Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
-## Выполнить скрипт mysql_secure_installation
+### Выполнить скрипт mysql_secure_installation
 
 
-## Создать юзера под которым все будет работать
+### Создать юзера под которым все будет работать
 ```bash
 useradd server_user
 passwd server_user
 ```
 
-## Выключить selinux /etc/selinux/config
+### Выключить selinux /etc/selinux/config
 
-## Автостарт проекта
+### Автостарт проекта
 ```bash
 chmod 760 /etc/rc.d/rc.local
 ```
 
-## Добавить в /etc/rc.d/rc.local
+### Добавить в /etc/rc.d/rc.local
 ```bash
 /usr/bin/sudo -H -u dev_stem /srv/www/dev/api/uwsgi_socket_start_simple.sh -d
 
@@ -81,7 +81,7 @@ echo kyber > /sys/block/sda/queue/scheduler
 ```
 
 
-## Виртуальное окружение
+### Виртуальное окружение
 
 ```bash
 cd /srv
