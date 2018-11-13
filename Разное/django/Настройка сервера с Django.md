@@ -53,7 +53,7 @@ systemctl enable nginx
 
 ### Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
 
-### Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 elevator=kyber" затем
+### Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1" затем
 ```bash
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
@@ -78,7 +78,7 @@ chmod 760 /etc/rc.d/rc.local
 ```bash
 /usr/bin/sudo -H -u dev_stem /srv/www/dev/api/uwsgi_socket_start_simple.sh -d
 
-# В grub2 опция почемуто не работает, тогда так
+# В grub2 опция не работает, тогда так  или  через systemd
 echo kyber > /sys/block/sda/queue/scheduler
 ```
 
