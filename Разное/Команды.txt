@@ -48,15 +48,8 @@ nc -l 20000 | dd bs=4096 of=opensuse_13_2_client.img
 dd bs=4096 count=1048576 if=/dev/sda | nc 192.168.120.144 20000
 
 
-
-
-
 Добавление пользователя proftpd
 /usr/local/etc/proftpd/ftpasswd --passwd --file=/usr/local/etc/proftpd/passwd --name=new_sites --shell=/usr/sbin/nologin --home=/home/aquarius/domains/second_part --uid=2007 --gid=80
-
-
-http://www.opennet.ru/man.shtml?topic=rsyncd.conf&category=5&russian=0
-rsync --human-readable --progress --preallocate --compress --recursive --times --perms --links --delete-before backup_2@danzo.vd::_backup_servers /home/stas/bin/disk_e
 
 
 Поиск дубликатов
@@ -84,7 +77,7 @@ tar --sparse -czf        backup_config_rei_vd.tar.gz /etc /var/www --exclude=/va
 tar --sparse -c /home/client /usr /etc /var /root /boot /srv --exclude=/var/tmp --exclule=/var/run | 7z a -m0=LZMA2 -mx=9 -si /home/stas/backup.tar.7z
 
 
-mysqldump -uroot -h127.0.0.1 -p --routines --all-databases > gsm_dump_mysql.sql
+
 
 
 ----------------------------------------------------------------------------------------------------------
