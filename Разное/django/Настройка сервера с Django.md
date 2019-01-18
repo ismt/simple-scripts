@@ -53,7 +53,7 @@ systemctl enable nginx
 
 /etc/sysctl.conf
 vm.overcommit_memory=2
-vm.overcommit_ratio=100
+vm.overcommit_ratio=90
 
 /etc/redis.conf
 maxmemory 100M
