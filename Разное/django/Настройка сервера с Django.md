@@ -50,6 +50,14 @@ firewall-cmd --reload
 systemctl restart nginx
 systemctl enable nginx
 
+
+/etc/sysctl.conf
+vm.overcommit_memory=2
+vm.overcommit_ratio=100
+
+/etc/redis.conf
+maxmemory 100M
+
 systemctl restart redis
 systemctl enable redis
 
@@ -72,12 +80,6 @@ useradd server_user
 passwd server_user
 ```
 
-/etc/sysctl.conf
-vm.overcommit_memory=2
-vm.overcommit_ratio=100
-
-/etc/redis.conf
-maxmemory 100M
 
 ### Выключить selinux /etc/selinux/config
 
