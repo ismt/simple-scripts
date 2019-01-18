@@ -14,7 +14,7 @@ yum -y install epel-release
 yum -y erase mariadb*
 
 
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop
+yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop  redis40u
 
 yum update  -y
 
@@ -49,6 +49,11 @@ firewall-cmd --reload
 
 systemctl restart nginx
 systemctl enable nginx
+
+systemctl restart redis
+systemctl enable redis
+
+
 ```
 
 ### Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
@@ -67,6 +72,13 @@ useradd server_user
 passwd server_user
 ```
 
+/etc/sysctl.conf
+vm.overcommit_memory=2
+vm.overcommit_ratio=100
+
+/etc/redis.conf
+maxmemory 100M
+
 ### Выключить selinux /etc/selinux/config
 
 ### Автостарт проекта
@@ -80,6 +92,11 @@ chmod 760 /etc/rc.d/rc.local
 
 # В grub2 опция не работает, тогда так  или  через systemd
 echo kyber > /sys/block/sda/queue/scheduler
+
+# Для redis
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+sysctl -w net.core.somaxconn=65535
+
 ```
 
 
@@ -101,6 +118,12 @@ virtualenv -p /usr/bin/python3.6 virtualenv
 git clone -b develop https://github.com/stemsc/.git project
 
 ```
+
+
+
+
+
+
 
 
 
