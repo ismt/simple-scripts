@@ -54,6 +54,7 @@ systemctl enable nginx
 /etc/sysctl.conf
 vm.overcommit_memory=2
 vm.overcommit_ratio=90
+net.core.somaxconn=65535
 
 /etc/redis.conf
 maxmemory 100M
@@ -97,7 +98,7 @@ echo kyber > /sys/block/sda/queue/scheduler
 
 # Для redis
 echo never > /sys/kernel/mm/transparent_hugepage/enabled
-sysctl -w net.core.somaxconn=65535
+
 
 ```
 
