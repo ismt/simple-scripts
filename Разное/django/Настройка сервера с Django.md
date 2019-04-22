@@ -58,6 +58,8 @@ net.core.somaxconn=65535
 
 /etc/redis.conf
 maxmemory 100M
+maxmemory-policy allkeys-lru
+
 
 systemctl restart redis
 systemctl enable redis
@@ -122,12 +124,11 @@ git clone -b develop https://github.com/stemsc/.git project
 
 ```
 
+```bash
+mkfs.xfs -i size=1024 -s size=4096 /dev/sdc1
+
+```
 
 
 
-
-
-
-
-
-
+ 
