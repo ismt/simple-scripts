@@ -14,7 +14,7 @@ yum -y install epel-release
 yum -y erase mariadb*
 
 
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop  redis40u
+yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera
 
 yum update  -y
 
@@ -27,9 +27,9 @@ yum update  -y
 systemctl start mariadb
 systemctl enable mariadb
 
+mysql_secure_installation
 
-pip3.6 install uwsgi virtualenv  pipenv
-
+pip3.6 install uwsgi virtualenv pipenv
 
 # https://bozza.ru/art-259.html
 systemctl start firewalld
@@ -74,7 +74,7 @@ systemctl enable redis
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
-### Выполнить скрипт mysql_secure_installation
+
 
 
 ### Создать юзера под которым все будет работать
@@ -136,4 +136,6 @@ logbsize=256k
 
 
 
- 
+CREATE USER 'root'@'192.168.2.100' IDENTIFIED BY 'test';
+GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.100';
+FLUSH PRIVILEGES;
