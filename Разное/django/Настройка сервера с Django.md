@@ -135,7 +135,10 @@ logbsize=256k
 ```
 
 
-
+### Если надо открыть доступ к mysql
+```sql
 CREATE USER 'root'@'192.168.2.100' IDENTIFIED BY 'test';
 GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.100';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES; 
+
+```
