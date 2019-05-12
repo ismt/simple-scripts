@@ -14,7 +14,7 @@ yum -y install epel-release
 yum -y erase mariadb*
 
 
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera hdbarm  phoronix-test-suite    
+yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera hdbarm  phoronix-test-suite  zstd  lz4  
 
 yum update  -y
 
