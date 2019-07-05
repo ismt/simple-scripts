@@ -1,5 +1,7 @@
 Установить CentOS 7
 
+https://github.com/major/MySQLTuner-perl/
+
 Установить Питон 3 из репозитория https://ius.io/GettingStarted/
 ```bash
 
@@ -137,8 +139,8 @@ logbsize=256k
 
 ### Если надо открыть доступ к mysql
 ```sql
-CREATE USER 'root'@'192.168.2.100' IDENTIFIED BY 'test';
-GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.100';
+CREATE USER 'root'@'192.168.2.%' IDENTIFIED BY 'test';
+GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.%';
 FLUSH PRIVILEGES; 
 
 ```  
