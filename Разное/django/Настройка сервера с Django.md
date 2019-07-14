@@ -146,16 +146,8 @@ FLUSH PRIVILEGES;
 ```  
 
 
+### Генерация ключей 
+```bash
 
-
-
-
-
-
-
-
-
-
-
-
-
+ssh-keygen -o -a 100 -t ed25519 -f $HOME/.ssh/test
+```
