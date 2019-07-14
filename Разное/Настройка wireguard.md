@@ -13,8 +13,7 @@ wg set wg0 private-key /etc/wireguard/private.key
 wg-quick save /etc/wireguard/wg0.conf  
 ```      
 
-Сохранился конфиг, теперь добавим недостающее, должно получиться типа
-/etc/wireguard/wg0.conf
+Сохранился конфиг, теперь добавим недостающее, должно получиться типа /etc/wireguard/wg0.conf
 ```text
 [Interface]
 Address = 10.0.0.2/24
@@ -53,7 +52,7 @@ wg set wg0 private-key /etc/wireguard/private.key
 wg-quick save /etc/wireguard/wg0.conf  
 ```      
 
-Конфиг
+Конфиг /etc/wireguard/wg0.conf
 ```text
 [Interface]
 Address = 10.0.0.1/24
