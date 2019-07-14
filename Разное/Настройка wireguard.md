@@ -1,5 +1,5 @@
-Сервер
-Сначала настраиваем интерфейс командами
+РЎРµСЂРІРµСЂ
+РЎРЅР°С‡Р°Р»Р° РЅР°СЃС‚СЂР°РёРІР°РµРј РёРЅС‚РµСЂС„РµР№СЃ РєРѕРјР°РЅРґР°РјРё
 ```bash
 umask 077
 mkdir /etc/wireguard/
@@ -13,33 +13,33 @@ wg set wg0 private-key /etc/wireguard/private.key
 wg-quick save /etc/wireguard/wg0.conf  
 ```      
 
-Сохранился конфиг, теперь добавим недостающее, должно получиться типа
+РЎРѕС…СЂР°РЅРёР»СЃСЏ РєРѕРЅС„РёРі, С‚РµРїРµСЂСЊ РґРѕР±Р°РІРёРј РЅРµРґРѕСЃС‚Р°СЋС‰РµРµ, РґРѕР»Р¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊСЃСЏ С‚РёРїР°
 /etc/wireguard/wg0.conf
 ```text
 [Interface]
 Address = 10.0.0.2/24
 ListenPort = 60000
-PrivateKey = Приватный_ключ_сервера
+PrivateKey = РџСЂРёРІР°С‚РЅС‹Р№_РєР»СЋС‡_СЃРµСЂРІРµСЂР°
 
-# Вася
+# Р’Р°СЃСЏ
 [Peer]
-PublicKey = Публичный_ключ_клиента
+PublicKey = РџСѓР±Р»РёС‡РЅС‹Р№_РєР»СЋС‡_РєР»РёРµРЅС‚Р°
 AllowedIPs = 10.0.0.1/32
 
-# Цескаридзе
+# Р¦РµСЃРєР°СЂРёРґР·Рµ
 [Peer]
-PublicKey = Публичный_ключ_клиента
+PublicKey = РџСѓР±Р»РёС‡РЅС‹Р№_РєР»СЋС‡_РєР»РёРµРЅС‚Р°
 AllowedIPs = 10.0.0.3/32
 
 ```
 
-Открыть порт VPN
+РћС‚РєСЂС‹С‚СЊ РїРѕСЂС‚ VPN
 ```bash
 firewall-cmd --permanent --zone=internal --add-port=60000/udp
 firewall-cmd --feload 
 ```
 
-Клиент
+РљР»РёРµРЅС‚
 ```bash
 umask 077
 mkdir /etc/wireguard/
@@ -53,32 +53,32 @@ wg set wg0 private-key /etc/wireguard/private.key
 wg-quick save /etc/wireguard/wg0.conf  
 ```      
 
-Конфиг
+РљРѕРЅС„РёРі
 ```text
 
 [Interface]
 Address = 10.0.0.1/24
 ListenPort = 41969
-PrivateKey = Приватный_ключ_клиента
+PrivateKey = РџСЂРёРІР°С‚РЅС‹Р№_РєР»СЋС‡_РєР»РёРµРЅС‚Р°
 
 [Peer]
-PublicKey = Публичный_ключ_сервера
+PublicKey = РџСѓР±Р»РёС‡РЅС‹Р№_РєР»СЋС‡_СЃРµСЂРІРµСЂР°
 
 AllowedIPs = 10.0.0.2/32
 
-# Целевой IP адрес на сервре который слушают mysql и прочие
+# Р¦РµР»РµРІРѕР№ IP Р°РґСЂРµСЃ РЅР° СЃРµСЂРІСЂРµ РєРѕС‚РѕСЂС‹Р№ СЃР»СѓС€Р°СЋС‚ mysql Рё РїСЂРѕС‡РёРµ
 AllowedIPs = 192.168.2.5/32
 
 Endpoint = 200.83.190.81:60000
 
 ```
 
-Настройка файрвола
+РќР°СЃС‚СЂРѕР№РєР° С„Р°Р№СЂРІРѕР»Р°
 
 ```bash
 firewall-cmd --add-interface=wg0 --zone=internal --permanent
 firewall-cmd --permanent --zone=internal --add-port=3306/tcp  
-firewall-cmd --reload  #  Выяснить не виден ли 10.0.0.2 из  внешней  сети
+firewall-cmd --reload  #  Р’С‹СЏСЃРЅРёС‚СЊ РЅРµ РІРёРґРµРЅ Р»Рё 10.0.0.2 РёР·  РІРЅРµС€РЅРµР№  СЃРµС‚Рё
 
 ```
 
