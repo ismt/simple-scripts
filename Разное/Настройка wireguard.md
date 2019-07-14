@@ -1,4 +1,4 @@
-Сервер
+### Сервер
 Сначала настраиваем интерфейс командами
 ```bash
 umask 077
@@ -39,7 +39,7 @@ firewall-cmd --permanent --zone=internal --add-port=60000/udp
 firewall-cmd --feload 
 ```
 
-Клиент
+### Клиент
 ```bash
 umask 077
 mkdir /etc/wireguard/
@@ -55,7 +55,6 @@ wg-quick save /etc/wireguard/wg0.conf
 
 Конфиг
 ```text
-
 [Interface]
 Address = 10.0.0.1/24
 ListenPort = 41969
@@ -63,7 +62,6 @@ PrivateKey = Приватный_ключ_клиента
 
 [Peer]
 PublicKey = Публичный_ключ_сервера
-
 AllowedIPs = 10.0.0.2/32
 
 # Целевой IP адрес на сервре который слушают mysql и прочие
