@@ -36,7 +36,7 @@ AllowedIPs = 10.0.0.3/32
 Открыть порт VPN
 ```bash
 firewall-cmd --permanent --zone=internal --add-port=60000/udp
-firewall-cmd --feload 
+firewall-cmd --reload 
 ```
 
 ### Клиент
@@ -64,15 +64,14 @@ PrivateKey = Приватный_ключ_клиента
 PublicKey = Публичный_ключ_сервера
 AllowedIPs = 10.0.0.2/32
 
-# Целевой IP адрес на сервре который слушают mysql и прочие
+# Целевой IP адрес на сервере который слушают mysql и прочие
 AllowedIPs = 192.168.2.5/32
 
 Endpoint = 200.83.190.81:60000
 
 ```
 
-Настройка файрвола
-
+### Настройка файрвола
 ```bash
 firewall-cmd --add-interface=wg0 --zone=internal --permanent
 firewall-cmd --permanent --zone=internal --add-port=3306/tcp  
