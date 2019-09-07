@@ -54,14 +54,14 @@ systemctl enable nginx
 
 
 /etc/sysctl.conf
-vm.overcommit_memory=2
+vm.overcommit_memory=0
 vm.overcommit_ratio=90
 net.core.somaxconn=65535
 
 /etc/redis.conf
 maxmemory 100M
 maxmemory-policy allkeys-lru
-
+save ""
 
 systemctl restart redis
 systemctl enable redis
