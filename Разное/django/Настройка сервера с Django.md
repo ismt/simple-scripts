@@ -2,23 +2,16 @@
 
 https://github.com/major/MySQLTuner-perl/
 
-Установить Питон 3 из репозитория https://ius.io/GettingStarted/
+Установить Питон 3 из репозитория https://ius.io/setup
 ```bash
+
+yum update  -y
 
 yum -y install mc wget libreoffice-calc
 
-wget https://centos7.iuscommunity.org/ius-release.rpm
-
-yum -y install ius-release.rpm
-yum -y install epel-release
-
-
 yum -y erase mariadb*
 
-
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera hdbarm  phoronix-test-suite zstd lz4 screen zip 
-
-yum update  -y
+yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc mariadb101u-devel mariadb101u-server mariadb101u kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera hdbarm  phoronix-test-suite zstd lz4 screen zip
 
 
 # Если проблема с локалями
@@ -141,13 +134,17 @@ logbsize=256k
 ```sql
 CREATE USER 'root'@'192.168.2.%' IDENTIFIED BY 'test';
 GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.%';
-FLUSH PRIVILEGES; 
+FLUSH PRIVILEGES;
 
-```  
+```
 
 
-### Генерация ключей 
+### Генерация ключей
 ```bash
 
 ssh-keygen -o -a 100 -t ed25519 -f $HOME/.ssh/test
 ```
+
+
+
+
