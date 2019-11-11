@@ -122,8 +122,11 @@ git clone -b develop https://github.com/stemsc/.git project
 ```bash
 mkfs.xfs -i size=1024 -s size=4096 -d agcount=16 /dev/sdc1
 
-# Опции монтирования для ssd
+# Опции монтирования для ssd              
 ikeep,logbsize=256k,discard
+
+# но у discard есть проблемы с производительностью, лучше вместо discard                                                        
+systemctl enable fstrim.timer
 
 # Опции монтирования для hdd
 logbsize=256k
