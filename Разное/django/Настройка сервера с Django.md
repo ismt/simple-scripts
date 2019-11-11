@@ -62,14 +62,12 @@ systemctl enable redis
 
 ```
 
-### Если есть графика и нужно подкрутить grub - yum install grub-customizer -y
+
 
 ### Добавить в /etc/default/grub в опцию  GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 zswap.enabled=1 zswap.compressor=lz4" затем
 ```bash
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
-
-
 
 
 ### Создать юзера под которым все будет работать
