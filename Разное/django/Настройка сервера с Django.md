@@ -9,11 +9,13 @@ yum update  -y
 
 yum -y install mc wget libreoffice-calc
 
-yum -y erase mariadb*     
+yum -y erase mariadb*
 
 Установить из https://downloads.mariadb.org/
 
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u mariadb101u-server-galera hdbarm  phoronix-test-suite zstd lz4 screen zip fio
+yum install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine
+
+yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u hdbarm  phoronix-test-suite zstd lz4 screen zip fio
 
 
 # Если проблема с локалями
@@ -122,10 +124,10 @@ git clone -b develop https://github.com/stemsc/.git project
 ```bash
 mkfs.xfs -i size=1024 -s size=4096 -d agcount=16 /dev/sdc1
 
-# Опции монтирования для ssd              
+# Опции монтирования для ssd
 ikeep,logbsize=256k,discard
 
-# но у discard есть проблемы с производительностью, лучше вместо discard                                                        
+# но у discard есть проблемы с производительностью, лучше вместо discard
 systemctl enable fstrim.timer
 
 # Опции монтирования для hdd
