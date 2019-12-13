@@ -67,6 +67,5 @@ ft_stopword_file=""
 
 socket=mysql.sock
 
-
-
-
+plugin-load-add=ha_tokudb.so
+plugin-load-add=ha_rocksdb.so
