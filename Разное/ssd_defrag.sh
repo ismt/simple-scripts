@@ -19,8 +19,8 @@ if [[ -n "$exists_ext4" ]]
 then
     e4defrag "$device" > /dev/null
 
-    # Принудительно каждый файл, команда ваше работает не до конца
-    find / -xdev -type f -exec e4defrag -- "{}" \;
+    # Принудительно каждый файл, команда выше работает не до конца
+    # find / -xdev -type f -exec e4defrag -- "{}" \;
 
 elif [[ -n "$exists_xfs" ]]
 then
