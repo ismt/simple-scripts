@@ -21,7 +21,7 @@ then
 
 elif [[ -n "$exists_xfs" ]]
 then
-    xfs_fsr "$device"
+    xfs_fsr "$device" > /dev/null
 
 else
     echo "Файловая система не определена"
