@@ -28,6 +28,8 @@ else
 
 fi
 
-fstrim /
+mount_point=$(grep "^$device " /proc/mounts | cut -d ' ' -f 2)
+
+fstrim ${mount_point}
 
 
