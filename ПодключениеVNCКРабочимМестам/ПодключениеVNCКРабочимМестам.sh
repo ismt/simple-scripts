@@ -11,40 +11,40 @@ while read line
 do
   if ! [[ "$line" =~ (^#) ]]
   then
-    if [ "$(echo $line | tr -d ' ')" != '' ]
+    if [[ "$(echo ${line} | tr -d ' ')" != '' ]]
     then
-      ip=$(echo  $line | cut -d\" -f2)
+      ip=$(echo  ${line} | cut -d\" -f2)
 
-      CheckPort $(echo $ip | cut -d: -f1) $(echo $ip | cut -d: -f2)
+      CheckPort $(echo ${ip} | cut -d: -f1) $(echo ${ip} | cut -d: -f2)
 
-      hostname=$(echo  $line | cut -d\" -f4)
+      hostname=$(echo  ${line} | cut -d\" -f4)
       cmd_options="${cmd_options} \"${ip}\" \"$CheckPortResult ${hostname}\" \"off\""
     fi
   fi
 done < СписокКомпов.txt
 
-ip=$(echo $cmd_options | xargs kdialog)
+ip=$(echo ${cmd_options} | xargs kdialog)
 
-if [ "$ip" != "" ] ;
+if [[ "$ip" != "" ]] ;
 then
-  host_options=$(cat СписокКомпов.txt | grep $ip)
+  host_options=$(cat СписокКомпов.txt | grep ${ip})
 
-  options="$ip $(echo $host_options | cut -d\" -f6)"
-  password=$(echo $host_options | cut -d\" -f8)
+  options="$ip $(echo ${host_options} | cut -d\" -f6)"
+  password=$(echo ${host_options} | cut -d\" -f8)
 
   kdialog --warningyesno "Только наблюдение ?"
-  if [ "$?" == 0 ] ;
+  if [[ "$?" == 0 ]] ;
   then
-    options='-ViewOnly '$options
+    options='-ViewOnly '${options}
   fi
 
-  echo $password | vncpasswd -f > /tmp/vnc_temp_password
+  echo ${password} | vncpasswd -f > /tmp/vnc_temp_password
 
-  vncviewer -passwd /tmp/vnc_temp_password $options 2>&1 | tee /tmp/vncviewer.log
+  vncviewer -passwd /tmp/vnc_temp_password ${options} 2>&1 | tee /tmp/vncviewer.log
 
   res=$(cat /tmp/vncviewer.log | grep 'Authentication failed from')
-  if [ "$res" != "" ] ;
+  if [[ "$res" != "" ]] ;
   then
-    vncviewer $options  2>&1 | tee /tmp/vncviewer.log
+    vncviewer ${options}  2>&1 | tee /tmp/vncviewer.log
   fi
 fi

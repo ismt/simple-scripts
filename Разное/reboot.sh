@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 pause_sec=15
 

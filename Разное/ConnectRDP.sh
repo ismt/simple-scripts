@@ -1,13 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 numlockx on
 
 x=$(xprop -root _NET_WORKAREA | awk '{print $5}' | tr "," " ")
 y=$(xprop -root _NET_WORKAREA | awk '{print $6}' | tr "," " ")
 
-res=`expr $x`x`expr $y - 0`
+res=`expr ${x}`x`expr ${y} - 0`
 
-echo $res
+echo ${res}
 
 xfreerdp -k 0x00000409 --plugin cliprdr --ignore-certificate --plugin rdpdr --data disk:Downloads:$HOME/Загрузки -- -x 0x87 -D -g $res -z -a 16 -u user -p pass 127.0.0.1
 # --no-bmp-cache
