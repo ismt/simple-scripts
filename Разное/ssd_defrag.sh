@@ -20,7 +20,7 @@ then
     e4defrag "$device" > /dev/null
 
     # Принудительно каждый файл, команда выше работает не до конца
-    # find / -xdev -type f -exec e4defrag -- "{}" \;
+    # find / -xdev -type f -exec e4defrag -- "{}" \; > /dev/null
 
 elif [[ -n "$exists_xfs" ]]
 then
