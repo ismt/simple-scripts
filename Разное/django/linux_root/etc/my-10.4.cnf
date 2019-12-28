@@ -54,7 +54,7 @@ myisam_max_sort_file_size=30G
 myisam_sort_buffer_size=100M
 
 aria_pagecache_buffer_size=500M
-aria_repair_threads=1
+aria_repair_threads=2
 
 transaction_isolation=READ-COMMITTED
 
