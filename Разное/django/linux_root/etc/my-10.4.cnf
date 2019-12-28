@@ -47,15 +47,14 @@ innodb_doublewrite=OFF
 
 # Если это значение больше 1, индексы таблиц создаются параллельно (каждый индекс в своем потоке) во время операции Repair сортирующим процессом.
 # Установить по количеству ядер в процессоре
-myisam_repair_threads=1
+myisam_repair_threads=2
 
 # myisam_block_size=4096
 myisam_max_sort_file_size=30G
 myisam_sort_buffer_size=100M
 
-
 aria_pagecache_buffer_size=500M
-
+aria_repair_threads=1
 
 transaction_isolation=READ-COMMITTED
 
@@ -73,4 +72,6 @@ ft_stopword_file=""
 socket=mysql.sock
 
 plugin-load-add=ha_tokudb.so
-plugin-load-add=ha_rocksdb.so
+plugin-load-add=ha_rocksdb.so                                                                                        
+
+
