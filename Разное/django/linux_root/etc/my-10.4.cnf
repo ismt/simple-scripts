@@ -43,14 +43,13 @@ innodb_sort_buffer_size=60M
 innodb_log_file_size=500M  # Важно выставить размер побольше при интенсивной записи, слишком большое значение тоже вредно
 innodb_defragment=ON
 innodb_log_buffer_size=256M
-innodb_doublewrite=OFF
 
 # Если это значение больше 1, индексы таблиц создаются параллельно (каждый индекс в своем потоке) во время операции Repair сортирующим процессом.
 # Установить по количеству ядер в процессоре
 myisam_repair_threads=2
 
 # myisam_block_size=4096
-# myisam_max_sort_file_size=30G
+myisam_max_sort_file_size=300G
 myisam_sort_buffer_size=100M
 
 aria_pagecache_buffer_size=500M
