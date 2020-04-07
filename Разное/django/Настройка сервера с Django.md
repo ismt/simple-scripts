@@ -9,13 +9,13 @@ yum update  -y
 
 yum -y install mc wget libreoffice-calc
 
-yum -y erase mariadb*
+yum erase mariadb*
 
 Установить из https://downloads.mariadb.org/
 
 yum install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine
 
-yum -y install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u hdbarm  phoronix-test-suite zstd lz4 screen zip fio
+yum install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u hdbarm  phoronix-test-suite zstd lz4 screen zip fio
 
 
 # Если проблема с локалями
