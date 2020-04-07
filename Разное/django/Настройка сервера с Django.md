@@ -7,7 +7,7 @@ https://github.com/major/MySQLTuner-perl/
 
 yum update  -y
 
-yum -y install mc wget libreoffice-calc
+yum -y install mc wget libreoffice-calc htop iotop atop zstd zip lz4 pbzip2 p7zip lzop pv git screen unzip pigz
 
 yum erase mariadb*
 
@@ -15,7 +15,7 @@ yum erase mariadb*
 
 yum install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine
 
-yum install mc git htop wget python36u python36u-devel python36u-pip net-tools gcc kernel-devel unzip psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools pigz memcached pv iotop atop pbzip2 p7zip mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng lzop redis40u hdbarm  phoronix-test-suite zstd lz4 screen zip fio
+yum install python36u python36u-devel python36u-pip net-tools gcc kernel-devel psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools  memcached mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng redis40u hdparm phoronix-test-suite fio
 
 
 # Если проблема с локалями
