@@ -1,34 +1,17 @@
 Установить CentOS 7
 
-https://github.com/major/MySQLTuner-perl/
+### Ссылки  
 
-Установить Питон 3 из репозитория https://ius.io/setup
+##### https://github.com/major/MySQLTuner-perl/
+##### Питон 3 https://ius.io/setup
+##### https://downloads.mariadb.org/    
+
+Выполнить скрипт  install_django_server_centos_7.sh
+
 ```bash
-
-yum update  -y
-
-yum -y install mc wget libreoffice-calc htop iotop atop zstd zip lz4 pbzip2 p7zip lzop pv git screen unzip pigz
-
-yum erase mariadb*
-
-Установить из https://downloads.mariadb.org/
-
-yum install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine
-
-yum install python36u python36u-devel python36u-pip net-tools gcc kernel-devel psmisc libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools  memcached mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng redis40u hdparm phoronix-test-suite fio
-
-
-# Если проблема с локалями
-#localedef -v -c -i ru_RU -f UTF-8 ru_RU.UTF-8
-
-
-# Подложить эталонный конфиг mariadb
-systemctl start mariadb
-systemctl enable mariadb
-
 mysql_secure_installation
 
-pip3.6 install uwsgi virtualenv pipenv
+#  Затем настроить конфиг mysql
 
 # https://bozza.ru/art-259.html
 systemctl start firewalld
