@@ -4,7 +4,7 @@ curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bashyum upda
 
 yum -y install https://repo.ius.io/ius-release-el7.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-yum -y install mc wget libreoffice-calc htop iotop atop zstd zip lz4 pbzip2 p7zip lzop pv git screen unzip pigz
+yum -y install mc wget libreoffice-calc htop iotop atop zstd zip lz4 pbzip2 p7zip lzop pv git screen unzip pigz openssh-server
 
 yum -y erase mariadb*
 
