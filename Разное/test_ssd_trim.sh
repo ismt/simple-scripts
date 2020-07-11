@@ -10,7 +10,7 @@
 # Date: 20120129
 #
 
-if [ $# -ne 3 ]; then
+if [[ $# -ne 3 ]]; then
 	echo
 	echo "Usage: $0 <filename> <size> <device>"
 	echo
@@ -39,7 +39,7 @@ hdparm --fibmap "$FILE"
 SECTOR=`hdparm --fibmap "$FILE" | tail -n1 | awk '{ print $2; }'`
 
 # Read the first sector prior to deletion
-hdparm --read-sector $SECTOR "$DEVICE"
+hdparm --read-sector ${SECTOR} "$DEVICE"
 echo
 echo "This is a sector of the file. It should have been successfully read"
 echo "and show a bunch of random data."
@@ -53,7 +53,7 @@ echo
 echo "File deleted. Sleeping for 120 seconds before re-reading the sector."
 echo "If TRIM is working, you should see all 0s now."
 sleep 30
-hdparm --read-sector $SECTOR "$DEVICE"
+hdparm --read-sector ${SECTOR} "$DEVICE"
 echo
 echo "If the sector isn't filled with 0s, something is wrong with your"
 echo "configuration. Try googling for \"TRIM SSD Linux\"."
