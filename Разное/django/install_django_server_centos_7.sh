@@ -4,7 +4,8 @@
 yum -y install dialog
 
 
-retval=$(dialog  --title 'Настройка хоста'  \
+retval=$(dialog  \
+        --title 'Настройка хоста'  \
         --menu 'Выбор' 15 50 3 \
             1 'Установить пакеты' \
             2 'Старт вебсервисов'   --output-fd 1
