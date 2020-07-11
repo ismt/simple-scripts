@@ -4,13 +4,13 @@
 yum -y install dialog
 
 
-dialog  --title 'Выберите действие'  \
+retval=$(dialog  --title 'Настройка хоста'  \
         --menu 'Выбор' 15 50 3 \
             1 'Установить пакеты' \
-            2 'Старт вебсервисов'
+            2 'Старт вебсервисов'   --output-fd 1
+        )
             
-            
-case $? in
+case ${retval} in
 1)
     yum -y install https://repo.ius.io/ius-release-el7.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
