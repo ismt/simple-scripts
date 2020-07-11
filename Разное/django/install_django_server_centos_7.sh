@@ -6,12 +6,12 @@ yum -y install dialog
 
 dialog  --title 'Выберите действие'  \
         --menu 'Выбор' 15 50 3 \
-            0 'Установить пакеты' \
-            1 'Старт вебсервисов'
+            1 'Установить пакеты' \
+            2 'Старт вебсервисов'
             
             
 case $? in
-0)
+1)
     yum -y install https://repo.ius.io/ius-release-el7.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
     yum -y install mc wget libreoffice-calc htop iotop atop zstd zip lz4 pbzip2 p7zip lzop pv git screen unzip pigz openssh-server
@@ -34,7 +34,7 @@ case $? in
    ;;
 
 
-0)
+2)
     pip3.6 install pip --upgrade
 
     pip3.6 install uwsgi virtualenv pipenv --upgrade
