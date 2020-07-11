@@ -1,5 +1,0 @@
-Работает только под Linux KDE, нужен KDialog, ffmpeg, imagemagic, optipng, vpx-tools, vorbis-tools, libpng12 bc
-
-http://www.imagemagick.org/script/command-line-options.php
-https://sites.google.com/a/webmproject.org/wiki/ffmpeg
-http://www.imagemagick.org/script/command-line-processing.php#geometry
