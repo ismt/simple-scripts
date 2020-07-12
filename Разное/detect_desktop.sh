@@ -65,7 +65,7 @@ detectDE()
       # but not in GNOME 3.x
       which gnome-default-applications-properties > /dev/null 2>&1  || DE="gnome3"
     fi
-    echo $DE
+    echo ${DE}
 }
 
 detectDE
