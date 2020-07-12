@@ -9,7 +9,7 @@ res=`expr ${x}`x`expr ${y} - 0`
 
 echo ${res}
 
-xfreerdp -k 0x00000409 --plugin cliprdr --ignore-certificate --plugin rdpdr --data disk:Downloads:$HOME/Загрузки -- -x 0x87 -D -g $res -z -a 16 -u user -p pass 127.0.0.1
+xfreerdp -k 0x00000409 --plugin cliprdr --ignore-certificate --plugin rdpdr --data disk:Downloads:$HOME/Загрузки -- -x 0x87 -D -g ${res} -z -a 16 -u user -p pass 127.0.0.1
 # --no-bmp-cache
 # Windows 7 -x 0x87
 #This hex value is actually a combination of defined bit flags. After some tinkering I found that the hex value 0×80 will enable font smoothing for the connection.
