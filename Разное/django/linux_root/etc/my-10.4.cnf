@@ -57,7 +57,7 @@ transaction_isolation=READ-COMMITTED
 
 delayed_queue_size=1000000 
 
-group_concat_max_len=1M
+group_concat_max_len=5M
 
 # https://laracasts.com/discuss/channels/tips/mariadb-utf8mb4-and-string-indexes-hitting-the-error-specified-key-was-too-long-max-key-length-is-767-bytes
 character_set_server=utf8
