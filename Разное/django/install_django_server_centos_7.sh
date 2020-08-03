@@ -26,7 +26,7 @@ case ${retval} in
 
         curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 
-        yum -y install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine
+        yum -y install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine MariaDB-connect-engine
 
         yum -y install http://sphinxsearch.com/files/sphinx-2.2.11-1.rhel7.x86_64.rpm
 
