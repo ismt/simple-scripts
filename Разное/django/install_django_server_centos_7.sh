@@ -22,7 +22,7 @@ case ${retval} in
 
     yum -y erase mariadb*
 
-    curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+    curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup --mariadb-server-version=10.4 | bash
 
     yum -y install MariaDB-server MariaDB-shared MariaDB-devel MariaDB-rocksdb-engine MariaDB-tokudb-engine MariaDB-connect-engine
 
