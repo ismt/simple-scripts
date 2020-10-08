@@ -57,7 +57,7 @@ transaction_isolation=READ-COMMITTED
 
 delayed_queue_size=1000000 
 
-group_concat_max_len=5M
+group_concat_max_len=10M
 
 # https://laracasts.com/discuss/channels/tips/mariadb-utf8mb4-and-string-indexes-hitting-the-error-specified-key-was-too-long-max-key-length-is-767-bytes
 character_set_server=utf8
@@ -68,10 +68,10 @@ ft_stopword_file=""
 
 socket=mysql.sock
 
-plugin-load-add=ha_tokudb.so
-plugin-load-add=ha_rocksdb.so
-plugin-load-add=ha_mroonga.so
-plugin-load-add=ha_sphinx.so
+plugin_load_add=ha_federatedx
+plugin_load_add=ha_rocksdb
+plugin_load_add=ha_mroonga
+plugin_load_add=ha_sphinx
 
 
 
