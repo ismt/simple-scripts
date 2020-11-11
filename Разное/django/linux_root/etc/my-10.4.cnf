@@ -22,7 +22,7 @@ max_connections=1000
 
 key_cache_division_limit=80
 
-query_cache_size=200M
+query_cache_size=5M
 query_cache_limit=200K
 query_cache_type=ON
 
