@@ -31,7 +31,9 @@ case ${retval} in
         libxml2-devel libxslt-devel libmemcached-devel nginx npm httpd-tools memcached \
         mysqlreport perl-DBD-MySQL smartmontools jpegoptim optipng redis40u hdparm phoronix-test-suite fio ncdu
 
-    yum update -y
+    yum install https://github.com/muesli/duf/releases/download/v0.5.0/duf_0.5.0_linux_amd64.rpm
+
+    # yum update -y
 
     echo 'Перезагрузитесь, иначе могут быть проблемы изза обновления'
 
