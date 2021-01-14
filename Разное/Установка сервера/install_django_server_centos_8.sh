@@ -31,8 +31,6 @@ case ${retval} in
         libxml2-devel libxslt-devel nginx npm httpd-tools memcached \
         perl-DBD-MySQL smartmontools jpegoptim optipng redis hdparm fio ncdu
 
-    
-
     # yum update -y
 
     echo 'Перезагрузитесь, иначе могут быть проблемы изза обновления'
