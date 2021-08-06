@@ -17,8 +17,8 @@ long_query_time=3 # https://dev.mysql.com/doc/refman/5.7/en/server-system-variab
 
 log_output=FILE # https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_log_output
 
-thread_cache_size=256
-max_connections=1000
+# thread_cache_size=256
+# max_connections=1000
 
 key_cache_division_limit=80
 
