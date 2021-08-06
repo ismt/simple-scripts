@@ -13,9 +13,9 @@ log_error=/var/log/mariadb/error.log
 
 slow_query_log=OFF
 slow_query_log_file=/var/log/mariadb/slow.log
-long_query_time=3 # https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_long_query_time
+long_query_time=3 # https://mariadb.com/kb/en/server-system-variables/#long_query_time
 
-log_output=FILE # https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_log_output
+log_output=FILE # https://mariadb.com/kb/en/server-system-variables/#log_output
 
 # thread_cache_size=256
 # max_connections=1000
@@ -52,8 +52,6 @@ aria_pagecache_buffer_size=500M
 aria_repair_threads=2
 
 transaction_isolation=READ-COMMITTED
-
-delayed_queue_size=1000000 
 
 group_concat_max_len=10M
 
