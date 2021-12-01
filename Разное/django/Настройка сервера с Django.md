@@ -120,8 +120,11 @@ logbsize=256k
 
 ### Если надо открыть доступ к mysql
 ```sql
+SELECT User, Host, Password
+FROM mysql.user;
+
 CREATE USER 'root'@'192.168.2.%' IDENTIFIED BY 'test';
-GRANT ALL PRIVILEGES ON  *.* TO 'root'@'192.168.2.%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.2.%';
 FLUSH PRIVILEGES;
 
 ```
