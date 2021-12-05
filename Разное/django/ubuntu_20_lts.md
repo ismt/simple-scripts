@@ -1,4 +1,4 @@
 ```bash
-apt install mc git gcc make
+apt install mc git gcc make docker docker-compose
 
 ```
