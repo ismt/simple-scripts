@@ -1,12 +1,14 @@
 Установить CentOS 7
 
-### Ссылки  
+### Ссылки
 
 ##### https://github.com/major/MySQLTuner-perl/
-##### Питон 3 https://ius.io/setup
-##### https://downloads.mariadb.org/    
 
-Выполнить скрипт  install_django_server_centos_7.sh
+##### Питон 3 https://ius.io/setup
+
+##### https://downloads.mariadb.org/
+
+Выполнить скрипт install_django_server_centos_7.sh
 
 ```bash
 mysql_secure_installation
@@ -49,29 +51,29 @@ systemctl enable redis
 
 ```
 
-
-
 ### Добавить в /etc/default/grub в опцию GRUB_CMDLINE_LINUX_DEFAULT параметр  "scsi_mod.use_blk_mq=1 zswap.enabled=1 zswap.compressor=lzo" затем
+
 ```bash
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
-
 ### Создать юзера под которым все будет работать
+
 ```bash
 useradd server_user
 passwd server_user
 ```
 
-
 ### Выключить selinux /etc/selinux/config
 
 ### Автостарт проекта
+
 ```bash
 chmod 760 /etc/rc.d/rc.local
 ```
 
 ### Добавить в /etc/rc.d/rc.local
+
 ```bash
 /usr/bin/sudo -H -u dev_stem /srv/www/dev/api/uwsgi_socket_start_simple.sh -d
 
@@ -83,7 +85,6 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 
 ```
-
 
 ### Виртуальное окружение
 
@@ -115,25 +116,6 @@ systemctl enable fstrim.timer
 
 # Опции монтирования для hdd
 logbsize=256k
-```
-
-
-### Если надо открыть доступ к mysql
-```sql
-SELECT User, Host, Password
-FROM mysql.user;
-
-CREATE USER 'root'@'192.168.2.%' IDENTIFIED BY 'test';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.2.%';
-FLUSH PRIVILEGES;
-
-```
-
-
-### Генерация ключей
-```bash
-
-ssh-keygen -o -a 100 -t ed25519 -C "user@domain.ru" -f $HOME/.ssh/test
 ```
 
 
