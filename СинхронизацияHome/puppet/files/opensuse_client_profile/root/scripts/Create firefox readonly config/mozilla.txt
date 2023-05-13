@@ -1,5 +1,5 @@
 //
-lockPref("browser.startup.homepage", "http://habrahabr.ru");
+lockPref("browser.startup.homepage", "");
 lockPref("network.proxy.type", 1);
 lockPref("network.proxy.http", "127.0.0.1");
 lockPref("network.proxy.http_port", 3128);

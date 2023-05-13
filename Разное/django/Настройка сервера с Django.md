@@ -15,7 +15,6 @@ mysql_secure_installation
 
 #  Затем настроить конфиг mysql
 
-# https://bozza.ru/art-259.html
 systemctl start firewalld
 systemctl enable firewalld
 
