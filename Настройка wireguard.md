@@ -1,5 +1,9 @@
+https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-debian-11
+
 ### Сервер
+
 Сначала настраиваем интерфейс командами
+
 ```bash
 umask 077
 mkdir /etc/wireguard/
